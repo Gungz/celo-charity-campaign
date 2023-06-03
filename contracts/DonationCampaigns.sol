@@ -34,9 +34,7 @@ contract DonationCampaigns {
     uint internal campaignsLength = 0;
     address internal cUsdTokenAddress = 0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1;
 
-    function getCampaign(uint _index) public view returns (
-		Campaign memory
-	) {
+    function getCampaign(uint _index) public view returns (Campaign memory) {
 		return (
 			campaigns[_index]
 		);
@@ -49,6 +47,7 @@ contract DonationCampaigns {
 		uint _goal,
         uint _campaignClosedDate
 	) public {
+        campaignsLength++;
 		campaigns[campaignsLength] = Campaign(
 			payable(msg.sender),
             campaignsLength,
@@ -61,7 +60,7 @@ contract DonationCampaigns {
             false,
             false
 		);
-		campaignsLength++;
+		
 	}
     
     function getBookmarkedCampaignIDs() public view returns (uint[] memory) {
@@ -76,6 +75,9 @@ contract DonationCampaigns {
 
     function bookmarkCampaigns(uint _index) public {
         uint[] storage myBookmarkedCampaigns = bookmarkedCampaigns[msg.sender];
+        for (uint i = 0; i < myBookmarkedCampaigns.length; i++) {
+        require(myBookmarkedCampaigns[i] != _index, "Campaign already bookmarked");
+        }
         myBookmarkedCampaigns.push(_index); 
     }
 
@@ -98,20 +100,21 @@ contract DonationCampaigns {
         campaigns[_index].donationWithdrawn = true;
     }
 
-    function makeDonation(uint _index, uint donation) public payable {
+    function makeDonation(uint _index, uint donation) public {
         require(
-		  IERC20Token(cUsdTokenAddress).transferFrom(
-            msg.sender,
-			address(this),
-			donation
-		  ),
-		  "Transfer failed."
-		);
-		campaignDonation[_index] += donation;
+            IERC20Token(cUsdTokenAddress).transferFrom(
+                msg.sender,
+                address(this),
+                donation
+            ),
+            "Transfer failed."
+        );
+        campaignDonation[_index] += donation;
         if (campaignDonation[_index] >= campaigns[_index].goal) {
             campaigns[_index].goalReached = true;
         }
     }
+
 
     function closeCampaign(uint _index) public {
         require(msg.sender == campaigns[_index].owner, "Campaign can only be closed by owner");
