@@ -7,7 +7,7 @@ Contract code can be found in `contracts` folder
 The web app (using React) can be found in `client` folder
 
 ## Demo Application
-
+https://gungz.github.io/celo-charity-campaign/
 
 ## How to Use
 1. Please install [Celo Extension Wallet](https://chrome.google.com/webstore/detail/celoextensionwallet/kkilomkmpmkbdnfelcpgckmpcaemjcdh) in your Google Chrome. Without the extension, the DApp will not work.
