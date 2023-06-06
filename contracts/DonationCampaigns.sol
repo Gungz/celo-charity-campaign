@@ -84,34 +84,89 @@ contract DonationCampaigns {
         return donation;
     }
 
-    function withdrawDonation(uint _index) public payable {
-        assert(IERC20Token(cUsdTokenAddress).balanceOf(address(this)) >= campaignDonation[_index]);
-        require(msg.sender == campaigns[_index].owner, "Withdrawer is not campaign owner");
-        require(campaigns[_index].donationWithdrawn == false);
+   
+
+    function withdrawDonation(uint _index) public {
+    require(msg.sender == campaigns[_index].owner, "Withdrawer is not campaign owner");
+    require(campaigns[_index].donationWithdrawn == false, "Donations already withdrawn");
+    require(campaigns[_index].closed == true, "Campaign is not closed");
+
+    if (campaigns[_index].goalReached) {
         require(
-		  IERC20Token(cUsdTokenAddress).transfer(
-			msg.sender,
-			campaignDonation[_index]
-		  ),
-		  "Withdrawal failed."
-		);
-        campaigns[_index].donationWithdrawn = true;
+            IERC20Token(cUsdTokenAddress).transfer(
+                campaigns[_index].owner,
+                campaignDonation[_index]
+            ),
+            "Withdrawal failed."
+        );
+    } else {
+        require(
+            IERC20Token(cUsdTokenAddress).transfer(
+                campaigns[_index].owner,
+                campaignDonation[_index] / 2
+            ),
+            "Withdrawal failed."
+        );
+        require(
+            IERC20Token(cUsdTokenAddress).transfer(
+                address(this),
+                campaignDonation[_index] / 2
+            ),
+            "Transfer failed."
+        );
     }
+    campaigns[_index].donationWithdrawn = true;
+}
+
+
 
     function makeDonation(uint _index, uint donation) public payable {
-        require(
-		  IERC20Token(cUsdTokenAddress).transferFrom(
+    require(!campaigns[_index].closed, "Campaign is closed, no further donations accepted");
+
+    require(
+        IERC20Token(cUsdTokenAddress).transferFrom(
             msg.sender,
-			address(this),
-			donation
-		  ),
-		  "Transfer failed."
-		);
-		campaignDonation[_index] += donation;
-        if (campaignDonation[_index] >= campaigns[_index].goal) {
-            campaigns[_index].goalReached = true;
-        }
+            address(this),
+            donation
+        ),
+        "Transfer failed."
+    );
+
+    campaignDonation[_index] += donation;
+
+    if (campaignDonation[_index] >= campaigns[_index].goal) {
+        campaigns[_index].goalReached = true;
     }
+}
+
+contract DonationCampaigns {
+    // ... (existing code omitted for brevity)
+
+    function withdrawExcessFunds(uint _index) public {
+        require(campaigns[_index].closed, "Campaign must be closed");
+        require(campaigns[_index].goalReached, "Campaign goal must be reached");
+        require(msg.sender == campaigns[_index].owner, "Only the campaign owner can withdraw excess funds");
+        require(campaigns[_index].donationWithdrawn == false, "Excess funds already withdrawn");
+
+        uint excessFunds = campaignDonation[_index] - campaigns[_index].goal;
+        require(IERC20Token(cUsdTokenAddress).balanceOf(address(this)) >= excessFunds, "Insufficient contract balance");
+
+        if (excessFunds > 0) {
+            require(
+                IERC20Token(cUsdTokenAddress).transfer(
+                    msg.sender,
+                    excessFunds
+                ),
+                "Excess funds withdrawal failed"
+            );
+        }
+
+        campaigns[_index].donationWithdrawn = true;
+    }
+}
+
+
+
 
     function closeCampaign(uint _index) public {
         require(msg.sender == campaigns[_index].owner, "Campaign can only be closed by owner");
