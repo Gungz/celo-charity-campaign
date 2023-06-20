@@ -94,7 +94,7 @@ class App extends Component {
       <React.Fragment>
         <Nav variant="tabs">
           <Nav.Item>
-            <LinkContainer to="/">
+            <LinkContainer to="/celo-charity-campaign">
               <Nav.Link>All Campaigns</Nav.Link>
             </LinkContainer>
           </Nav.Item>
@@ -107,8 +107,8 @@ class App extends Component {
         </Nav>
         
         <Routes>
-          <Route path="/" element={<Campaigns campaignList={allCampaigns} createCampaign={createCampaign} />} />
-          <Route path="/campaign/:id" element={<Campaign contract={this.state.contract} account={this.state.account} cUSDContract={this.state.cUSDContract} />} />
+          <Route path="/celo-charity-campaign" element={<Campaigns campaignList={allCampaigns} createCampaign={createCampaign} />} />
+          <Route path="/celo-charity-campaign/campaign/:id" element={<Campaign contract={this.state.contract} account={this.state.account} cUSDContract={this.state.cUSDContract} />} />
         </Routes>
       </React.Fragment>
       

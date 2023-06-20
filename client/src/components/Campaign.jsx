@@ -146,18 +146,20 @@ const Campaign = (props) => {
                             </Col>
                             <Col xs={1}><Form.Label><h6>cUSD</h6></Form.Label></Col>
                             <Col xs={2}>
-                                <Button variant="primary" type="submit" disabled={donateDisabled}>
-                                  {donateDisabled &&
-                                    <Spinner
-                                      as="span"
-                                      animation="grow"
-                                      size="sm"
-                                      role="status"
-                                      aria-hidden="true"
-                                    />
-                                  }
-                                  {donateDisabled ? "Loading..." : "Donate"}
-                                </Button>
+                                {campaign.owner !== account &&
+                                  <Button variant="primary" type="submit" disabled={donateDisabled}>
+                                    {donateDisabled &&
+                                      <Spinner
+                                        as="span"
+                                        animation="grow"
+                                        size="sm"
+                                        role="status"
+                                        aria-hidden="true"
+                                      />
+                                    }
+                                    {donateDisabled ? "Loading..." : "Donate"}
+                                  </Button>
+                                }
                             </Col>
                           </Row>
                         </Form>
