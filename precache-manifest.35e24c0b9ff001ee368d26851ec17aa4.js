@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1286afb471b74f16415bd5318a40a600",
+    "revision": "739b5f195c5ab695fbb88ceb5519c0d8",
     "url": "/celo-charity-campaign/index.html"
   },
   {
