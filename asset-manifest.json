@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/celo-charity-campaign/static/css/main.5f689838.chunk.css",
-    "main.js": "/celo-charity-campaign/static/js/main.90c4b6f1.chunk.js",
-    "main.js.map": "/celo-charity-campaign/static/js/main.90c4b6f1.chunk.js.map",
+    "main.js": "/celo-charity-campaign/static/js/main.06cbc526.chunk.js",
+    "main.js.map": "/celo-charity-campaign/static/js/main.06cbc526.chunk.js.map",
     "runtime-main.js": "/celo-charity-campaign/static/js/runtime-main.0260cd2c.js",
     "runtime-main.js.map": "/celo-charity-campaign/static/js/runtime-main.0260cd2c.js.map",
     "static/js/2.6c7b9842.chunk.js": "/celo-charity-campaign/static/js/2.6c7b9842.chunk.js",
     "static/js/2.6c7b9842.chunk.js.map": "/celo-charity-campaign/static/js/2.6c7b9842.chunk.js.map",
     "index.html": "/celo-charity-campaign/index.html",
-    "precache-manifest.1d0249d0ae6e61a10ee078da7cb944b7.js": "/celo-charity-campaign/precache-manifest.1d0249d0ae6e61a10ee078da7cb944b7.js",
+    "precache-manifest.d5a8a38afcb6b863dab88281755033d2.js": "/celo-charity-campaign/precache-manifest.d5a8a38afcb6b863dab88281755033d2.js",
     "service-worker.js": "/celo-charity-campaign/service-worker.js",
     "static/css/main.5f689838.chunk.css.map": "/celo-charity-campaign/static/css/main.5f689838.chunk.css.map"
   },
@@ -16,6 +16,6 @@
     "static/js/runtime-main.0260cd2c.js",
     "static/js/2.6c7b9842.chunk.js",
     "static/css/main.5f689838.chunk.css",
-    "static/js/main.90c4b6f1.chunk.js"
+    "static/js/main.06cbc526.chunk.js"
   ]
 }
