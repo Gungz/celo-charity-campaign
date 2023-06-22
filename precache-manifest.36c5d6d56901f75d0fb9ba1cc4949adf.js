@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "cd88e0af63cadb095db6323c843be7ec",
+    "revision": "bd96cb923ae4da9aea9ac7cc0574ecc9",
     "url": "/celo-charity-campaign/index.html"
   },
   {
-    "revision": "6d44270263aec18f1aec",
+    "revision": "b9038e978381538e3acc",
     "url": "/celo-charity-campaign/static/css/main.5f689838.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/celo-charity-campaign/static/js/2.6c7b9842.chunk.js"
   },
   {
-    "revision": "6d44270263aec18f1aec",
-    "url": "/celo-charity-campaign/static/js/main.06cbc526.chunk.js"
+    "revision": "b9038e978381538e3acc",
+    "url": "/celo-charity-campaign/static/js/main.ba500a87.chunk.js"
   },
   {
     "revision": "742a20075989541f0a97",

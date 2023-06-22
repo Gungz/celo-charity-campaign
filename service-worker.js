@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/celo-charity-campaign/precache-manifest.d5a8a38afcb6b863dab88281755033d2.js"
+  "/celo-charity-campaign/precache-manifest.36c5d6d56901f75d0fb9ba1cc4949adf.js"
 );
 
 self.addEventListener('message', (event) => {
